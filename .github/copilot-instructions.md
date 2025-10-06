@@ -17,6 +17,83 @@
 
 ---
 
+## 📋 AI 输出格式规范
+
+> **⚠️ 所有 AI 模型必须严格遵守以下输出格式，确保不同平台输出一致！**
+
+**标准输出结构**（按顺序输出）：
+
+```markdown
+## 1. 分析题目
+
+**核心问题**：[一句话描述]
+- **输入**：[输入说明]
+- **输出**：[输出说明]
+- **关键点**：
+  - [关键点1]
+  - [关键点2]
+
+## 2. 设计思路
+
+**算法流程**：
+1. [步骤1]
+2. [步骤2]
+3. [步骤3]
+
+**边界条件**：
+- [边界1]
+- [边界2]
+
+## 3. 编写代码
+
+[调用 create_file 工具]
+
+## 4. 测试验证
+
+按照规范进行编译和测试：
+
+[调用 run_in_terminal 工具执行编译]
+
+编译成功！现在进行测试：
+
+[调用 run_in_terminal 工具执行测试，至少3个用例]
+
+完美！所有测试用例全部AC ✅
+
+## 5. 更新文档
+
+[调用 replace_string_in_file 工具]
+
+## 6. Git提交
+
+[调用 run_in_terminal 工具执行git命令]
+
+---
+
+## ✅ 完成总结
+
+**[题号] - [题目名称]** 已成功完成！
+
+**核心算法**：
+- [算法说明1]
+- [算法说明2]
+
+**测试结果**：X/X AC（X样例 + X边界，边界占比X%）
+- ✅ [测试用例1说明]
+- ✅ [测试用例2说明]
+- ✅ [测试用例3说明]
+
+**Git提交**：已完成代码+文档提交（commit: [commit_id]）
+```
+
+**禁止行为**：
+- ❌ 不要省略任何步骤编号（1-6）
+- ❌ 不要改变章节标题的Markdown格式
+- ❌ 不要在完成总结前输出多余内容
+- ❌ 不要使用其他格式的标题或列表
+
+---
+
 ## 📝 代码规范
 
 **标准模板**:
@@ -149,16 +226,16 @@ $actual"; if ($actual -eq $expected) { echo "[结果] AC" } else { echo "[结果
 
 **常用命令**:
 ```bash
-git status                                              # 查看状态
-git add "<文件名>[AI].cpp" ".github/copilot-instructions.md"  # 添加代码+文档（带[AI]必须加引号）
-git commit -m "[Add] <文件名>[AI]"                      # 提交（消息格式固定）
-git log --oneline                                       # 查看历史
+clear;git status                                              # 查看状态
+clear;git add "<文件名>[AI].cpp" ".github/copilot-instructions.md"  # 添加代码+文档（带[AI]必须加引号）
+clear;git commit -m "[Add] <文件名>[AI]"                      # 提交（消息格式固定）
+clear;git log --oneline                                       # 查看历史
 ```
 
 **提交规范**: [Add]新题 | [Fix]修复 | [Doc]文档 | [Ref]重构 | [Del]删除
 
 **示例**:
 ```bash
-git add "P1888[AI].cpp" ".github/copilot-instructions.md"
-git commit -m "[Add] P1888[AI]"
+clear;git add "P1888[AI].cpp" ".github/copilot-instructions.md"
+clear;git commit -m "[Add] P1888[AI]"
 ```
