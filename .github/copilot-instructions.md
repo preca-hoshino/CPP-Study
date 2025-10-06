@@ -148,26 +148,15 @@ using namespace std;
 
 ### 🐧 Linux 环境
 
-**编译方式**:
+**编译命令**:
 ```bash
-# VS Code任务方式（推荐）
-Ctrl+Shift+B                                       # 调用任务: [Linux] g++ build active file
-
-# 命令行方式（必须按此格式）
-clear;echo 'BUILD MODE';g++ -g <文件名>.cpp -o <文件名>                      # 手动编译
-clear;echo 'BUILD MODE';g++ -g "P5709[AI].cpp" -o "P5709[AI]"               # 带[AI]的文件需要引号
+clear;echo 'BUILD MODE';g++ -g <文件名>.cpp -o <文件名>
+clear;echo 'BUILD MODE';g++ -g "P5709[AI].cpp" -o "P5709[AI]"  # 带[AI]需要引号
 ```
 
-**测试命令** (Bash/Zsh) - **严格按此模板**:
+**测试命令** (Bash/Zsh):
 ```bash
-# 单行输入测试
-actual=$(echo '<输入>' | ./<文件名>); expected='<期望输出>'; clear;echo -e "TEST MODE #<次数> [<简短说明>]\n[输入]\n<输入>\n[期望输出]\n$expected\n[实际输出]\n$actual"; [[ "$actual" == "$expected" ]] && echo "[结果] AC" || echo "[结果] WA"
-
-# 多行输入测试
 actual=$(echo -e "<输入>" | ./<文件名>); expected='<期望输出>'; clear;echo -e "TEST MODE #<次数> [<简短说明>]\n[输入]\n<输入>\n[期望输出]\n$expected\n[实际输出]\n$actual"; [[ "$actual" == "$expected" ]] && echo "[结果] AC" || echo "[结果] WA"
-
-# 多行输入测试(替代)
-actual=$(printf "<输入>\n" | ./<文件名>); expected='<期望输出>'; clear;echo -e "TEST MODE #<次数> [<简短说明>]\n[输入]\n<输入>\n[期望输出]\n$expected\n[实际输出]\n$actual"; [[ "$actual" == "$expected" ]] && echo "[结果] AC" || echo "[结果] WA"
 ```
 
 **调试方式**:
@@ -179,28 +168,14 @@ actual=$(printf "<输入>\n" | ./<文件名>); expected='<期望输出>'; clear;
 
 ### 🪟 Windows 环境
 
-**编译方式**:
+**编译命令**:
 ```powershell
-# VS Code任务方式（推荐）
-Ctrl+Shift+B                                       # 调用任务: [Windows] cl.exe 生成活动文件
-
-# 命令行方式（必须按此格式）
-clear;echo 'BUILD MODE';cl.exe /Zi /EHsc /nologo /Fe<文件名>.exe <文件名>.cpp   # 手动编译
-clear;echo 'BUILD MODE';cl.exe /Zi /EHsc /nologo /Fe"P5709[AI].exe" "P5709[AI].cpp"  # 带[AI]的文件需要引号
+clear;echo 'BUILD MODE';cl.exe /Zi /EHsc /nologo /Fe<文件名>.exe <文件名>.cpp
+clear;echo 'BUILD MODE';cl.exe /Zi /EHsc /nologo /Fe"P5709[AI].exe" "P5709[AI].cpp"  # 带[AI]需要引号
 ```
 
-**测试命令** (PowerShell) - **严格按此模板**:
+**测试命令** (PowerShell):
 ```powershell
-# 单行输入测试
-$actual = (echo '<输入>' | .\<文件名>.exe); $expected = '<期望输出>'; clear; echo "TEST MODE #<次数> [<简短说明>]
-[输入]
-<输入>
-[期望输出]
-$expected
-[实际输出]
-$actual"; if ($actual -eq $expected) { echo "[结果] AC" } else { echo "[结果] WA" }
-
-# 多行输入测试
 $actual = (@"
 <输入>
 "@ | .\<文件名>.exe); $expected = '<期望输出>'; clear; echo "TEST MODE #<次数> [<简短说明>]
