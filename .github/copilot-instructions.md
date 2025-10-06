@@ -92,6 +92,8 @@ using namespace std;
 > - `<文件名>`: 实际的题号（如 P1001、B2001）
 > - `<次数>`: 测试轮次（如 #1、#2）
 > - `<简短说明>`: 测试说明（如 [样例]、[边界max]、[负数]）
+> - `<输入>`: 输入的样例
+> - `<期望输出>`: 期望的输出结果
 
 **用例数量**: 3-5个 (1样例+2边界最少) | **边界占比**: ≥50% | **边界选择**: n=min(0/1)/max/特殊值  
 **测试流程**: 编译→样例→边界min→边界max→特殊值(可选)
@@ -110,9 +112,14 @@ clear;echo 'BUILD MODE';g++ -g "P5709[AI].cpp" -o "P5709[AI]"               # �
 
 **测试命令** (Bash/Zsh) - **严格按此模板**:
 ```bash
-clear;echo -e 'TEST MODE #<次数> [<简短说明>]\n[输入]\n<输入>\n[输出]';echo '<输出>' | ./<文件名>                                 # 单行输入
-clear;echo -e 'TEST MODE #<次数> [<简短说明>]\n[输入]\n<输入>\n[输出]';echo -e "3 5\n7" | ./<文件名>                        # 多行输入
-clear;echo -e 'TEST MODE #<次数> [<简短说明>]\n[输入]\n<输入>\n[输出]';printf "3 5\n7\n" | ./<文件名>                       # 多行输入(替代)
+# 单行输入测试
+actual=$(echo '<输入>' | ./<文件名>); expected='<期望输出>'; clear;echo -e "TEST MODE #<次数> [<简短说明>]\n[输入]\n<输入>\n[期望输出]\n$expected\n[实际输出]\n$actual"; [[ "$actual" == "$expected" ]] && echo "[AC]" || echo "[WA]"
+
+# 多行输入测试
+actual=$(echo -e "<输入>" | ./<文件名>); expected='<期望输出>'; clear;echo -e "TEST MODE #<次数> [<简短说明>]\n[输入]\n<输入>\n[期望输出]\n$expected\n[实际输出]\n$actual"; [[ "$actual" == "$expected" ]] && echo "[AC]" || echo "[WA]"
+
+# 多行输入测试(替代)
+actual=$(printf "<输入>\n" | ./<文件名>); expected='<期望输出>'; clear;echo -e "TEST MODE #<次数> [<简短说明>]\n[输入]\n<输入>\n[期望输出]\n$expected\n[实际输出]\n$actual"; [[ "$actual" == "$expected" ]] && echo "[AC]" || echo "[WA]"
 ```
 
 **调试方式**:
@@ -136,11 +143,25 @@ clear;echo 'BUILD MODE';cl.exe /Zi /EHsc /nologo /Fe"P5709[AI].exe" "P5709[AI].c
 
 **测试命令** (PowerShell) - **严格按此模板**:
 ```powershell
-clear;echo -e 'TEST MODE #<次数> [<简短说明>]\n[输入]\n<输入>\n[输出]';echo '<输出>' | .\<文件名>.exe                            # 单行输入
-@"
-3 5
-7
-"@ | .\<文件名>.exe                                  # 多行输入
+# 单行输入测试
+$actual = (echo '<输入>' | .\<文件名>.exe); $expected = '<期望输出>'; clear; echo "TEST MODE #<次数> [<简短说明>]
+[输入]
+<输入>
+[期望输出]
+$expected
+[实际输出]
+$actual"; if ($actual -eq $expected) { echo "[AC]" } else { echo "[WA]" }
+
+# 多行输入测试
+$actual = (@"
+<输入>
+"@ | .\<文件名>.exe); $expected = '<期望输出>'; clear; echo "TEST MODE #<次数> [<简短说明>]
+[输入]
+<输入>
+[期望输出]
+$expected
+[实际输出]
+$actual"; if ($actual -eq $expected) { echo "[AC]" } else { echo "[WA]" }
 ```
 
 **调试方式**:
@@ -153,7 +174,7 @@ clear;echo -e 'TEST MODE #<次数> [<简短说明>]\n[输入]\n<输入>\n[输出
 ## 📖 题目分类 
 
 **基础计算**: B2001, P1001
-**条件判断**: 
+**条件判断**: P1046, P1085
 **数组排序**: 
 **循环累加**: P1035
 **格式输出**: 
