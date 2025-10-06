@@ -7,7 +7,6 @@
 - AI 辅助编写：`P5709[AI].cpp`
 
 ### 📁 目录结构
-
 ```
 CPP-Study/
 ├── 2025-10-1/          # 2025年10月第1周
@@ -94,6 +93,7 @@ using namespace std;
 > - `<简短说明>`: 测试说明（如 [样例]、[边界max]、[负数]）
 > - `<输入>`: 输入的样例
 > - `<期望输出>`: 期望的输出结果
+> - `<实际输出>`: 实际的输出结果
 
 **用例数量**: 3-5个 (1样例+2边界最少) | **边界占比**: ≥50% | **边界选择**: n=min(0/1)/max/特殊值  
 **测试流程**: 编译→样例→边界min→边界max→特殊值(可选)
@@ -113,13 +113,13 @@ clear;echo 'BUILD MODE';g++ -g "P5709[AI].cpp" -o "P5709[AI]"               # �
 **测试命令** (Bash/Zsh) - **严格按此模板**:
 ```bash
 # 单行输入测试
-actual=$(echo '<输入>' | ./<文件名>); expected='<期望输出>'; clear;echo -e "TEST MODE #<次数> [<简短说明>]\n[输入]\n<输入>\n[期望输出]\n$expected\n[实际输出]\n$actual"; [[ "$actual" == "$expected" ]] && echo "[AC]" || echo "[WA]"
+actual=$(echo '<输入>' | ./<文件名>); expected='<期望输出>'; clear;echo -e "TEST MODE #<次数> [<简短说明>]\n[输入]\n<输入>\n[期望输出]\n$expected\n[实际输出]\n$actual"; [[ "$actual" == "$expected" ]] && echo "[结果] AC" || echo "[结果] WA"
 
 # 多行输入测试
-actual=$(echo -e "<输入>" | ./<文件名>); expected='<期望输出>'; clear;echo -e "TEST MODE #<次数> [<简短说明>]\n[输入]\n<输入>\n[期望输出]\n$expected\n[实际输出]\n$actual"; [[ "$actual" == "$expected" ]] && echo "[AC]" || echo "[WA]"
+actual=$(echo -e "<输入>" | ./<文件名>); expected='<期望输出>'; clear;echo -e "TEST MODE #<次数> [<简短说明>]\n[输入]\n<输入>\n[期望输出]\n$expected\n[实际输出]\n$actual"; [[ "$actual" == "$expected" ]] && echo "[结果] AC" || echo "[结果] WA"
 
 # 多行输入测试(替代)
-actual=$(printf "<输入>\n" | ./<文件名>); expected='<期望输出>'; clear;echo -e "TEST MODE #<次数> [<简短说明>]\n[输入]\n<输入>\n[期望输出]\n$expected\n[实际输出]\n$actual"; [[ "$actual" == "$expected" ]] && echo "[AC]" || echo "[WA]"
+actual=$(printf "<输入>\n" | ./<文件名>); expected='<期望输出>'; clear;echo -e "TEST MODE #<次数> [<简短说明>]\n[输入]\n<输入>\n[期望输出]\n$expected\n[实际输出]\n$actual"; [[ "$actual" == "$expected" ]] && echo "[结果] AC" || echo "[结果] WA"
 ```
 
 **调试方式**:
@@ -150,7 +150,7 @@ $actual = (echo '<输入>' | .\<文件名>.exe); $expected = '<期望输出>'; c
 [期望输出]
 $expected
 [实际输出]
-$actual"; if ($actual -eq $expected) { echo "[AC]" } else { echo "[WA]" }
+$actual"; if ($actual -eq $expected) { echo "[结果] AC" } else { echo "[结果] WA" }
 
 # 多行输入测试
 $actual = (@"
@@ -161,7 +161,7 @@ $actual = (@"
 [期望输出]
 $expected
 [实际输出]
-$actual"; if ($actual -eq $expected) { echo "[AC]" } else { echo "[WA]" }
+$actual"; if ($actual -eq $expected) { echo "[结果] AC" } else { echo "[结果] WA" }
 ```
 
 **调试方式**:
