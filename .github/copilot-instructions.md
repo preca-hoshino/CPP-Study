@@ -88,6 +88,11 @@ using namespace std;
 
 ## 🧪 测试与调试规范
 
+> **⚠️ GitHub Copilot 强制要求**: 编译与运行命令**必须严格按照**下方环境对应的命令模板执行，禁止使用其他格式！需要替换的条目包括：
+> - `<文件名>`: 实际的题号（如 P1001、B2001）
+> - `<次数>`: 测试轮次（如 #1、#2）
+> - `<简短说明>`: 测试说明（如 [样例]、[边界max]、[负数]）
+
 **用例数量**: 3-5个 (1样例+2边界最少) | **边界占比**: ≥50% | **边界选择**: n=min(0/1)/max/特殊值  
 **测试流程**: 编译→样例→边界min→边界max→特殊值(可选)
 
@@ -98,16 +103,16 @@ using namespace std;
 # VS Code任务方式（推荐）
 Ctrl+Shift+B                                       # 调用任务: [Linux] g++ build active file
 
-# 命令行方式
+# 命令行方式（必须按此格式）
 clear;echo 'BUILD MODE';g++ -g <文件名>.cpp -o <文件名>                      # 手动编译
 clear;echo 'BUILD MODE';g++ -g "P5709[AI].cpp" -o "P5709[AI]"               # 带[AI]的文件需要引号
 ```
 
-**测试命令** (Bash/Zsh):
+**测试命令** (Bash/Zsh) - **严格按此模板**:
 ```bash
-clear;echo 'TEST MODE #<次数> [<简短说明>]';echo 100 | ./P5722                                 # 单行输入
-clear;echo 'TEST MODE #<次数> [<简短说明>]';echo -e "3 5\n7" | ./P5722                        # 多行输入
-clear;echo 'TEST MODE #<次数> [<简短说明>]';printf "3 5\n7\n" | ./P5722                       # 多行输入(替代)
+clear;echo -e 'TEST MODE #<次数> [<简短说明>]\n[输入]\n<输入>\n[输出]';echo '<输出>' | ./<文件名>                                 # 单行输入
+clear;echo -e 'TEST MODE #<次数> [<简短说明>]\n[输入]\n<输入>\n[输出]';echo -e "3 5\n7" | ./<文件名>                        # 多行输入
+clear;echo -e 'TEST MODE #<次数> [<简短说明>]\n[输入]\n<输入>\n[输出]';printf "3 5\n7\n" | ./<文件名>                       # 多行输入(替代)
 ```
 
 **调试方式**:
@@ -124,18 +129,18 @@ clear;echo 'TEST MODE #<次数> [<简短说明>]';printf "3 5\n7\n" | ./P5722   
 # VS Code任务方式（推荐）
 Ctrl+Shift+B                                       # 调用任务: [Windows] cl.exe 生成活动文件
 
-# 命令行方式
+# 命令行方式（必须按此格式）
 clear;echo 'BUILD MODE';cl.exe /Zi /EHsc /nologo /Fe<文件名>.exe <文件名>.cpp   # 手动编译
 clear;echo 'BUILD MODE';cl.exe /Zi /EHsc /nologo /Fe"P5709[AI].exe" "P5709[AI].cpp"  # 带[AI]的文件需要引号
 ```
 
-**测试命令** (PowerShell):
+**测试命令** (PowerShell) - **严格按此模板**:
 ```powershell
-clear;echo 'TEST MODE #<次数> [<简短说明>]';echo 100 | .\P5722.exe                            # 单行输入
+clear;echo -e 'TEST MODE #<次数> [<简短说明>]\n[输入]\n<输入>\n[输出]';echo '<输出>' | .\<文件名>.exe                            # 单行输入
 @"
 3 5
 7
-"@ | .\P5722.exe                                  # 多行输入
+"@ | .\<文件名>.exe                                  # 多行输入
 ```
 
 **调试方式**:
@@ -150,7 +155,7 @@ clear;echo 'TEST MODE #<次数> [<简短说明>]';echo 100 | .\P5722.exe        
 **基础计算**: B2001, P1001
 **条件判断**: 
 **数组排序**: 
-**循环累加**:  
+**循环累加**: P1035
 **格式输出**: 
 **图形输出**:
 **高精度**: 
