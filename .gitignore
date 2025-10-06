@@ -1,0 +1,10 @@
+*
+!*.cpp
+!*.c
+!.github/
+!.vscode/
+!*.md
+!*-*-*/
+!.gitignore
+!*.json
+
