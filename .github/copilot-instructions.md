@@ -182,7 +182,7 @@ $actual"; if ($actual -eq $expected) { echo "[AC]" } else { echo "[WA]" }
 **高精度**: 
 **字符串**:
 **数字处理**: 
-**综合**: 
+**综合**: P3683
 
 ---
 
