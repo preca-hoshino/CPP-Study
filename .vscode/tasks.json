@@ -25,7 +25,7 @@
             "detail": "调试器生成的任务。",
             "presentation": {
                 "reveal": "always",
-                "close": true
+                // "close": true
             }
         },
         // {
@@ -64,7 +64,7 @@
             "detail": "compiler: /usr/bin/g++",
             "presentation": {
                 "reveal": "always",
-                "close": true
+                // "close": true
             }
         },
         // {
