@@ -163,7 +163,6 @@ using namespace std;
 
 **编译命令**:
 ```bash
-clear;echo 'BUILD MODE';g++ -g <文件名>.cpp -o <文件名>
 clear;echo 'BUILD MODE';g++ -g "P5709[AI].cpp" -o "P5709[AI]"  # 带[AI]需要引号
 ```
 
@@ -183,7 +182,6 @@ actual=$(echo -e "<输入>" | ./<文件名>); expected='<期望输出>'; clear;e
 
 **编译命令**:
 ```powershell
-clear;echo 'BUILD MODE';cl.exe /Zi /EHsc /nologo /Fe<文件名>.exe <文件名>.cpp
 clear;echo 'BUILD MODE';cl.exe /Zi /EHsc /nologo /Fe"P5709[AI].exe" "P5709[AI].cpp"  # 带[AI]需要引号
 ```
 
