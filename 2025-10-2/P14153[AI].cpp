@@ -17,6 +17,52 @@ int main()
         string ops;
         cin >> ops;
         
+        // 预处理：对每个初始位置，计算其轨迹经过的所有位置和最终位置
+        // path[i][j] 存储位置(i,j)上的袋鼠经过的所有位置集合
+        // final_pos[i][j] 存储最终位置（出界则为{-1,-1}）
+        vector<vector<set<pair<int,int>>>> path(n+1, vector<set<pair<int,int>>>(m+1));
+        vector<vector<pair<int,int>>> final_pos(n+1, vector<pair<int,int>>(m+1));
+        
+        // 对每个初始位置模拟一次
+        for(int si = 1; si <= n; si++)
+        {
+            for(int sj = 1; sj <= m; sj++)
+            {
+                int i = si, j = sj;
+                path[si][sj].insert({i, j}); // 记录起始位置
+                
+                bool out = false;
+                
+                // 模拟操作序列
+                for(char op : ops)
+                {
+                    if(op == 'U') i--;
+                    else if(op == 'D') i++;
+                    else if(op == 'L') j--;
+                    else if(op == 'R') j++;
+                    
+                    // 检查是否出界
+                    if(i < 1 || i > n || j < 1 || j > m)
+                    {
+                        out = true;
+                        break;
+                    }
+                    
+                    path[si][sj].insert({i, j});
+                }
+                
+                // 记录最终位置
+                if(out)
+                {
+                    final_pos[si][sj] = {-1, -1};
+                }
+                else
+                {
+                    final_pos[si][sj] = {i, j};
+                }
+            }
+        }
+        
         int answer = 0;
         
         // 枚举每个可能的洞位置
@@ -24,68 +70,37 @@ int main()
         {
             for(int jh = 1; jh <= m; jh++)
             {
-                // 用map记录当前有袋鼠的位置
-                map<pair<int,int>, int> kangaroos;
+                int surviving = 0;
                 
-                // 初始化：除洞外每个位置都有一只袋鼠
-                for(int i = 1; i <= n; i++)
+                // 检查每个初始位置的袋鼠
+                for(int si = 1; si <= n; si++)
                 {
-                    for(int j = 1; j <= m; j++)
+                    for(int sj = 1; sj <= m; sj++)
                     {
-                        if(i != ih || j != jh)
+                        // 如果初始位置就是洞，没有袋鼠
+                        if(si == ih && sj == jh)
                         {
-                            kangaroos[{i, j}] = 1;
-                        }
-                    }
-                }
-                
-                // 模拟每个操作
-                for(char op : ops)
-                {
-                    map<pair<int,int>, int> next_kangaroos;
-                    
-                    for(auto& p : kangaroos)
-                    {
-                        int i = p.first.first;
-                        int j = p.first.second;
-                        int count = p.second;
-                        
-                        int ni = i, nj = j;
-                        
-                        // 根据操作移动
-                        if(op == 'U') ni = i - 1;
-                        else if(op == 'D') ni = i + 1;
-                        else if(op == 'L') nj = j - 1;
-                        else if(op == 'R') nj = j + 1;
-                        
-                        // 检查是否掉入洞或出界
-                        if(ni < 1 || ni > n || nj < 1 || nj > m)
-                        {
-                            // 出界，袋鼠被移除
-                            continue;
-                        }
-                        if(ni == ih && nj == jh)
-                        {
-                            // 掉入洞，袋鼠被移除
                             continue;
                         }
                         
-                        // 袋鼠存活，移动到新位置
-                        next_kangaroos[{ni, nj}] += count;
+                        // 检查轨迹是否经过洞
+                        if(path[si][sj].count({ih, jh}))
+                        {
+                            continue; // 掉入洞
+                        }
+                        
+                        // 检查是否出界
+                        if(final_pos[si][sj].first == -1)
+                        {
+                            continue; // 出界
+                        }
+                        
+                        // 袋鼠存活
+                        surviving++;
                     }
-                    
-                    kangaroos = next_kangaroos;
                 }
                 
-                // 统计剩余袋鼠数
-                int remaining = 0;
-                for(auto& p : kangaroos)
-                {
-                    remaining += p.second;
-                }
-                
-                // 检查是否等于k
-                if(remaining == k)
+                if(surviving == k)
                 {
                     answer++;
                 }
