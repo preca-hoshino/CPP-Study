@@ -49,40 +49,47 @@ int main()
     for(int round = 0; round < r; round++)
     {
         vector<Player> winners, losers;
+        winners.reserve(n);
+        losers.reserve(n);
         
         // 配对比赛
         for(int i = 0; i < total; i += 2)
         {
-            Player p1 = players[i];
-            Player p2 = players[i + 1];
-            
-            if(p1.power > p2.power)
+            if(players[i].power > players[i + 1].power)
             {
-                p1.score++;
-                winners.push_back(p1);
-                losers.push_back(p2);
+                players[i].score++;
+                winners.push_back(players[i]);
+                losers.push_back(players[i + 1]);
             }
             else
             {
-                p2.score++;
-                winners.push_back(p2);
-                losers.push_back(p1);
+                players[i + 1].score++;
+                winners.push_back(players[i + 1]);
+                losers.push_back(players[i]);
             }
         }
         
-        // 合并胜者组和败者组
-        players.clear();
-        for(int i = 0; i < n; i++)
+        // 归并两个有序数组（关键优化：胜者组和败者组天然有序）
+        int i = 0, j = 0, k = 0;
+        while(i < n && j < n)
         {
-            players.push_back(winners[i]);
+            if(cmp(winners[i], losers[j]))
+            {
+                players[k++] = winners[i++];
+            }
+            else
+            {
+                players[k++] = losers[j++];
+            }
         }
-        for(int i = 0; i < n; i++)
+        while(i < n)
         {
-            players.push_back(losers[i]);
+            players[k++] = winners[i++];
         }
-        
-        // 统一排序
-        sort(players.begin(), players.end(), cmp);
+        while(j < n)
+        {
+            players[k++] = losers[j++];
+        }
     }
     
     // 输出第Q名的编号
