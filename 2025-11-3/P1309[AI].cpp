@@ -21,40 +21,6 @@ bool cmp(const Player& a, const Player& b)
     return a.id < b.id;
 }
 
-// 归并两个有序数组
-void merge(vector<Player>& winners, vector<Player>& losers, vector<Player>& all)
-{
-    int i = 0, j = 0;
-    int n1 = winners.size(), n2 = losers.size();
-    all.clear();
-    
-    while(i < n1 && j < n2)
-    {
-        if(cmp(winners[i], losers[j]))
-        {
-            all.push_back(winners[i]);
-            i++;
-        }
-        else
-        {
-            all.push_back(losers[j]);
-            j++;
-        }
-    }
-    
-    while(i < n1)
-    {
-        all.push_back(winners[i]);
-        i++;
-    }
-    
-    while(j < n2)
-    {
-        all.push_back(losers[j]);
-        j++;
-    }
-}
-
 int main()
 {
     int n = 0, r = 0, q = 0;
@@ -104,12 +70,19 @@ int main()
             }
         }
         
-        // 胜者组和败者组内部排序
-        sort(winners.begin(), winners.end(), cmp);
-        sort(losers.begin(), losers.end(), cmp);
+        // 合并胜者组和败者组
+        players.clear();
+        for(int i = 0; i < n; i++)
+        {
+            players.push_back(winners[i]);
+        }
+        for(int i = 0; i < n; i++)
+        {
+            players.push_back(losers[i]);
+        }
         
-        // 归并
-        merge(winners, losers, players);
+        // 统一排序
+        sort(players.begin(), players.end(), cmp);
     }
     
     // 输出第Q名的编号
