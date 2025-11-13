@@ -233,6 +233,7 @@ $actual"; if ($actual -eq $expected) { echo "[结果] AC" } else { echo "[结果
 **动态规划/贪心**: B4133
 **图形输出**:
 **高精度**: 
+**二分答案+BFS**: P1902
 **综合**: P3683
 
 ---
