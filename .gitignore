@@ -8,3 +8,4 @@
 !.gitignore
 !*.json
 test.cpp
+!*.md
