@@ -3,35 +3,31 @@
 // GitHub Copilot - 2025-12-14 10:00:00
 #include<bits/stdc++.h>
 using namespace std;
-
+int card[13];
+int min_turn = 99999;
 int main()
 {
-    int a[13];
-    for(int i = 0; i < 13; i++)
+    for(auto &i:card)
     {
-        cin >> a[i];
+        cin >> i;
     }
-
-    int min_draws = 100; // Initialize with a large enough number
-
-    // Iterate through each possible pair (13 types)
-    for(int pair_idx = 0; pair_idx < 13; pair_idx++)
+    for(int index_pair = 0; index_pair < 13; index_pair++)
     {
-        int needed = 0;
+        int sum = 0;
         for(int i = 0; i < 13; i++)
         {
-            int required = (i == pair_idx) ? 2 : 1;
-            if(a[i] < required)
+            int required = (i == index_pair) ? 2 : 1;
+            if(card[i] < required)
             {
-                needed += (required - a[i]);
+                sum += (required - card[i]);
             }
         }
-        if(needed < min_draws)
+        if(sum < min_turn)
         {
-            min_draws = needed;
+            min_turn = sum;
         }
     }
 
-    cout << min_draws << endl;
+    cout << min_turn << endl;
     return 0;
 }
