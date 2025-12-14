@@ -1,35 +1,35 @@
 // AGENT CODE
 // T708447 - 醒来之后，我回到了汰换系统更新前
 // GitHub Copilot - 2025-12-14 10:30:00
-#include<bits/stdc++.h>
+#include <bits/stdc++.h>
 using namespace std;
+int n, m;
+long long total = 0;
 int main()
 {
-    int n, m;
-    if (!(cin >> n >> m)) return 0;
-
-    vector<int> v(n);
-    for (int i = 0; i < n; ++i) {
-        cin >> v[i];
-    }
-
+    cin >> n >> m;
+    vector<int> v(n,0);
     vector<int> max_w(n, 0);
-    for (int i = 0; i < m; ++i) {
-        for (int j = 0; j < n; ++j) {
-            int w;
+    for (auto &i:v)
+    {
+        cin >> i;
+    }
+    for (auto i = 0; i < m; ++i)
+    {
+        int w;
+        for (auto &j:max_w)
+        {
             cin >> w;
-            max_w[j] = max(max_w[j], w);
+            j= max(j, w);
         }
     }
-
-    long long total_profit = 0;
-    for (int i = 0; i < n; ++i) {
-        if (max_w[i] > v[i]) {
-            total_profit += (long long)(max_w[i] - v[i]);
+    for (auto i = 0; i < n; ++i)
+    {
+        if (max_w[i] > v[i])
+        {
+            total += (long long)(max_w[i] - v[i]);
         }
     }
-
-    cout << total_profit << endl;
-
+    cout << total << endl;
     return 0;
 }
